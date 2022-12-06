@@ -11,9 +11,13 @@ Post.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    text: {
+   title: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    body: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     user_id: {
         type: DataTypes.INTEGER,
@@ -25,12 +29,6 @@ Post.init(
     
   },
   {
-    hooks: {
-      beforeCreate: async (newUserData) => {
-        newUserData.password = await bcrypt.hash(newUserData.password, 10);
-        return newUserData;
-      },
-    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
